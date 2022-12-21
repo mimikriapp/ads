@@ -64,8 +64,6 @@ public class NativeAd {
         private String adStatus = "";
         private String adNetwork = "";
         private String backupAdNetwork = "";
-        private String adMobNativeId = "";
-        private String adManagerNativeId = "";
         private String fanNativeId = "";
         private String appLovinNativeId = "";
         private int placementStatus = 1;
@@ -103,15 +101,7 @@ public class NativeAd {
             return this;
         }
 
-        public Builder setAdMobNativeId(String adMobNativeId) {
-            this.adMobNativeId = adMobNativeId;
-            return this;
-        }
 
-        public Builder setAdManagerNativeId(String adManagerNativeId) {
-            this.adManagerNativeId = adManagerNativeId;
-            return this;
-        }
 
         public Builder setFanNativeId(String fanNativeId) {
             this.fanNativeId = fanNativeId;

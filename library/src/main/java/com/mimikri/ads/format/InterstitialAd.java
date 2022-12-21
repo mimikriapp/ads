@@ -49,10 +49,7 @@ public class InterstitialAd {
         private String adStatus = "";
         private String adNetwork = "";
         private String backupAdNetwork = "";
-        private String adMobInterstitialId = "";
-        private String googleAdManagerInterstitialId = "";
         private String fanInterstitialId = "";
-        private String unityInterstitialId = "";
         private String appLovinInterstitialId = "";
         private String appLovinInterstitialZoneId = "";
         private String mopubInterstitialId = "";
@@ -90,25 +87,13 @@ public class InterstitialAd {
             return this;
         }
 
-        public Builder setAdMobInterstitialId(String adMobInterstitialId) {
-            this.adMobInterstitialId = adMobInterstitialId;
-            return this;
-        }
 
-        public Builder setGoogleAdManagerInterstitialId(String googleAdManagerInterstitialId) {
-            this.googleAdManagerInterstitialId = googleAdManagerInterstitialId;
-            return this;
-        }
 
         public Builder setFanInterstitialId(String fanInterstitialId) {
             this.fanInterstitialId = fanInterstitialId;
             return this;
         }
 
-        public Builder setUnityInterstitialId(String unityInterstitialId) {
-            this.unityInterstitialId = unityInterstitialId;
-            return this;
-        }
 
         public Builder setAppLovinInterstitialId(String appLovinInterstitialId) {
             this.appLovinInterstitialId = appLovinInterstitialId;

@@ -25,9 +25,7 @@ public class AdNetwork {
         private String adStatus = "";
         private String adNetwork = "";
         private String backupAdNetwork = "";
-        private String adMobAppId = "";
         private String startappAppId = "0";
-        private String unityGameId = "";
         private String appLovinSdkKey = "";
         private String mopubBannerId = "";
         private String ironSourceAppKey = "";
@@ -58,20 +56,12 @@ public class AdNetwork {
             return this;
         }
 
-        public Initialize setAdMobAppId(String adMobAppId) {
-            this.adMobAppId = adMobAppId;
-            return this;
-        }
 
         public Initialize setStartappAppId(String startappAppId) {
             this.startappAppId = startappAppId;
             return this;
         }
 
-        public Initialize setUnityGameId(String unityGameId) {
-            this.unityGameId = unityGameId;
-            return this;
-        }
 
         public Initialize setAppLovinSdkKey(String appLovinSdkKey) {
             this.appLovinSdkKey = appLovinSdkKey;

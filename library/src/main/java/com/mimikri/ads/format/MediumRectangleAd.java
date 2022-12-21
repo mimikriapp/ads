@@ -45,10 +45,7 @@ public class MediumRectangleAd {
         private String adStatus = "";
         private String adNetwork = "";
         private String backupAdNetwork = "";
-        private String adMobBannerId = "";
-        private String googleAdManagerBannerId = "";
         private String fanBannerId = "";
-        private String unityBannerId = "";
         private String appLovinBannerId = "";
         private String appLovinBannerZoneId = "";
         private String mopubBannerId = "";
@@ -81,23 +78,9 @@ public class MediumRectangleAd {
             return this;
         }
 
-        public Builder setAdMobBannerId(String adMobBannerId) {
-            this.adMobBannerId = adMobBannerId;
-            return this;
-        }
-
-        public Builder setGoogleAdManagerBannerId(String googleAdManagerBannerId) {
-            this.googleAdManagerBannerId = googleAdManagerBannerId;
-            return this;
-        }
 
         public Builder setFanBannerId(String fanBannerId) {
             this.fanBannerId = fanBannerId;
-            return this;
-        }
-
-        public Builder setUnityBannerId(String unityBannerId) {
-            this.unityBannerId = unityBannerId;
             return this;
         }
 
