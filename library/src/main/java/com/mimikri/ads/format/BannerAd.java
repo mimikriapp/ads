@@ -180,40 +180,8 @@ public class BannerAd {
                         break;
 
                     case Constant.UNITY:
-//                        RelativeLayout unityAdView = activity.findViewById(R.id.unity_banner_view_container);
-//                        BannerView bottomBanner = new BannerView(activity, unityBannerId, new UnityBannerSize(UNITY_ADS_BANNER_WIDTH_MEDIUM, UNITY_ADS_BANNER_HEIGHT_MEDIUM));
-//                        bottomBanner.setListener(new BannerView.IListener() {
-//                            @Override
-//                            public void onBannerLoaded(BannerView bannerView) {
-//                                unityAdView.setVisibility(View.VISIBLE);
-//                                Log.d("Unity_banner", "ready");
-//                            }
-//
-//                            @Override
-//                            public void onBannerClick(BannerView bannerView) {
-//
-//                            }
-//
-//                            @Override
-//                            public void onBannerFailedToLoad(BannerView bannerView, BannerErrorInfo bannerErrorInfo) {
-//                                Log.d("SupportTest", "Banner Error" + bannerErrorInfo);
-//                                unityAdView.setVisibility(View.GONE);
-//                                loadBackupBannerAd();
-//                            }
-//
-//                            @Override
-//                            public void onBannerLeftApplication(BannerView bannerView) {
-//
-//                            }
-//                        });
-//                        unityAdView.addView(bottomBanner);
-//                        bottomBanner.load();
-//                        Log.d(TAG, adNetwork + " Banner Ad unit Id : " + unityBannerId);
-                        break;
-
                     case Constant.APPLOVIN:
                     case Constant.APPLOVIN_MAX:
-                    case Constant.FAN_BIDDING_APPLOVIN_MAX:
                         RelativeLayout appLovinAdView = activity.findViewById(R.id.applovin_banner_view_container);
                         MaxAdView maxAdView = new MaxAdView(appLovinBannerId, activity);
                         maxAdView.setListener(new MaxAdViewAdListener() {
@@ -298,12 +266,7 @@ public class BannerAd {
                         this.appLovinAdView.loadNextAd();
                         break;
 
-                    case Constant.MOPUB:
-                        //Mopub has been acquired by AppLovin
-                        break;
-
                     case Constant.IRONSOURCE:
-                    case Constant.FAN_BIDDING_IRONSOURCE:
                         ironSourceBannerView = activity.findViewById(R.id.ironsource_banner_view_container);
                         ISBannerSize size = ISBannerSize.BANNER;
                         ironSourceBannerLayout = IronSource.createBanner(activity, size);
@@ -419,39 +382,8 @@ public class BannerAd {
                         break;
 
                     case Constant.UNITY:
-//                        RelativeLayout unityAdView = activity.findViewById(R.id.unity_banner_view_container);
-//                        BannerView bottomBanner = new BannerView(activity, unityBannerId, new UnityBannerSize(UNITY_ADS_BANNER_WIDTH_MEDIUM, UNITY_ADS_BANNER_HEIGHT_MEDIUM));
-//                        bottomBanner.setListener(new BannerView.IListener() {
-//                            @Override
-//                            public void onBannerLoaded(BannerView bannerView) {
-//                                unityAdView.setVisibility(View.VISIBLE);
-//                                Log.d("Unity_banner", "ready");
-//                            }
-//
-//                            @Override
-//                            public void onBannerClick(BannerView bannerView) {
-//
-//                            }
-//
-//                            @Override
-//                            public void onBannerFailedToLoad(BannerView bannerView, BannerErrorInfo bannerErrorInfo) {
-//                                Log.d("SupportTest", "Banner Error" + bannerErrorInfo);
-//                                unityAdView.setVisibility(View.GONE);
-//                            }
-//
-//                            @Override
-//                            public void onBannerLeftApplication(BannerView bannerView) {
-//
-//                            }
-//                        });
-//                        unityAdView.addView(bottomBanner);
-//                        bottomBanner.load();
-//                        Log.d(TAG, adNetwork + " Banner Ad unit Id : " + unityBannerId);
-                        break;
-
                     case Constant.APPLOVIN:
                     case Constant.APPLOVIN_MAX:
-                    case Constant.FAN_BIDDING_APPLOVIN_MAX:
                         RelativeLayout appLovinAdView = activity.findViewById(R.id.applovin_banner_view_container);
                         MaxAdView maxAdView = new MaxAdView(appLovinBannerId, activity);
                         maxAdView.setListener(new MaxAdViewAdListener() {
@@ -534,8 +466,7 @@ public class BannerAd {
                         this.appLovinAdView.loadNextAd();
                         break;
 
-                  case Constant.IRONSOURCE:
-                    case Constant.FAN_BIDDING_IRONSOURCE:
+                    case Constant.IRONSOURCE:
                         ironSourceBannerView = activity.findViewById(R.id.ironsource_banner_view_container);
                         ISBannerSize size = ISBannerSize.BANNER;
                         ironSourceBannerLayout = IronSource.createBanner(activity, size);

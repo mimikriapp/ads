@@ -188,26 +188,8 @@ public class InterstitialAd {
                         break;
 
                     case Constant.UNITY:
-//                        unityInterstitialAd = new com.unity3d.mediation.InterstitialAd(activity, unityInterstitialId);
-//                        final IInterstitialAdLoadListener unityAdLoadListener = new IInterstitialAdLoadListener() {
-//                            @Override
-//                            public void onInterstitialLoaded(com.unity3d.mediation.InterstitialAd interstitialAd) {
-//                                Log.d(TAG, "unity interstitial ad loaded");
-//                            }
-//
-//                            @Override
-//                            public void onInterstitialFailedLoad(com.unity3d.mediation.InterstitialAd interstitialAd, LoadError loadError, String s) {
-//                                Log.e(TAG, "Unity Ads failed to load ad : " + unityInterstitialId + " : error : " + s);
-//                                loadBackupInterstitialAd();
-//                            }
-//
-//                        };
-//                        unityInterstitialAd.load(unityAdLoadListener);
-                        break;
-
                     case Constant.APPLOVIN:
                     case Constant.APPLOVIN_MAX:
-                    case Constant.FAN_BIDDING_APPLOVIN_MAX:
                         maxInterstitialAd = new MaxInterstitialAd(appLovinInterstitialId, activity);
                         maxInterstitialAd.setListener(new MaxAdListener() {
                             @Override
@@ -268,12 +250,7 @@ public class InterstitialAd {
                         appLovinInterstitialAdDialog = AppLovinInterstitialAd.create(AppLovinSdk.getInstance(activity), activity);
                         break;
 
-                    case Constant.MOPUB:
-                        //Mopub has been acquired by AppLovin
-                        break;
-
                     case Constant.IRONSOURCE:
-                    case Constant.FAN_BIDDING_IRONSOURCE:
                         IronSource.setInterstitialListener(new InterstitialListener() {
                             @Override
                             public void onInterstitialAdReady() {
@@ -377,25 +354,8 @@ public class InterstitialAd {
                         break;
 
                     case Constant.UNITY:
-//                        unityInterstitialAd = new com.unity3d.mediation.InterstitialAd(activity, unityInterstitialId);
-//                        final IInterstitialAdLoadListener unityAdLoadListener = new IInterstitialAdLoadListener() {
-//                            @Override
-//                            public void onInterstitialLoaded(com.unity3d.mediation.InterstitialAd interstitialAd) {
-//                                Log.d(TAG, "unity interstitial ad loaded");
-//                            }
-//
-//                            @Override
-//                            public void onInterstitialFailedLoad(com.unity3d.mediation.InterstitialAd interstitialAd, LoadError loadError, String s) {
-//                                Log.e(TAG, "Unity Ads failed to load ad : " + unityInterstitialId + " : error : " + s);
-//                            }
-//
-//                        };
-//                        unityInterstitialAd.load(unityAdLoadListener);
-                        break;
-
                     case Constant.APPLOVIN:
                     case Constant.APPLOVIN_MAX:
-                    case Constant.FAN_BIDDING_APPLOVIN_MAX:
                         maxInterstitialAd = new MaxInterstitialAd(appLovinInterstitialId, activity);
                         maxInterstitialAd.setListener(new MaxAdListener() {
                             @Override
@@ -453,13 +413,7 @@ public class InterstitialAd {
                         });
                         appLovinInterstitialAdDialog = AppLovinInterstitialAd.create(AppLovinSdk.getInstance(activity), activity);
                         break;
-
-                    case Constant.MOPUB:
-                        //Mopub has been acquired by AppLovin
-                        break;
-
                     case Constant.IRONSOURCE:
-                    case Constant.FAN_BIDDING_IRONSOURCE:
                         IronSource.setInterstitialListener(new InterstitialListener() {
                             @Override
                             public void onInterstitialAdReady() {
@@ -532,34 +486,8 @@ public class InterstitialAd {
                             break;
 
                         case Constant.UNITY:
-//                            final IInterstitialAdShowListener showListener = new IInterstitialAdShowListener() {
-//                                @Override
-//                                public void onInterstitialShowed(com.unity3d.mediation.InterstitialAd interstitialAd) {
-//
-//                                }
-//
-//                                @Override
-//                                public void onInterstitialClicked(com.unity3d.mediation.InterstitialAd interstitialAd) {
-//
-//                                }
-//
-//                                @Override
-//                                public void onInterstitialClosed(com.unity3d.mediation.InterstitialAd interstitialAd) {
-//
-//                                }
-//
-//                                @Override
-//                                public void onInterstitialFailedShow(com.unity3d.mediation.InterstitialAd interstitialAd, ShowError showError, String s) {
-//                                    Log.d(TAG, "unity ads show failure");
-//                                    showBackupInterstitialAd();
-//                                }
-//                            };
-//                            unityInterstitialAd.show(showListener);
-                            break;
-
                         case Constant.APPLOVIN:
                         case Constant.APPLOVIN_MAX:
-                        case Constant.FAN_BIDDING_APPLOVIN_MAX:
                             if (maxInterstitialAd != null && maxInterstitialAd.isReady()) {
                                 Log.d(TAG, "ready : " + counter);
                                 maxInterstitialAd.showAd();
@@ -575,12 +503,7 @@ public class InterstitialAd {
                             }
                             break;
 
-                        case Constant.MOPUB:
-                            //Mopub has been acquired by AppLovin
-                            break;
-
                         case Constant.IRONSOURCE:
-                        case Constant.FAN_BIDDING_IRONSOURCE:
                             if (IronSource.isInterstitialReady()) {
                                 IronSource.showInterstitial(ironSourceInterstitialId);
                             } else {
@@ -613,34 +536,9 @@ public class InterstitialAd {
                         break;
 
                     case Constant.UNITY:
-//                        final IInterstitialAdShowListener showListener = new IInterstitialAdShowListener() {
-//                            @Override
-//                            public void onInterstitialShowed(com.unity3d.mediation.InterstitialAd interstitialAd) {
 //
-//                            }
-//
-//                            @Override
-//                            public void onInterstitialClicked(com.unity3d.mediation.InterstitialAd interstitialAd) {
-//
-//                            }
-//
-//                            @Override
-//                            public void onInterstitialClosed(com.unity3d.mediation.InterstitialAd interstitialAd) {
-//
-//                            }
-//
-//                            @Override
-//                            public void onInterstitialFailedShow(com.unity3d.mediation.InterstitialAd interstitialAd, ShowError showError, String s) {
-//                                Log.d(TAG, "unity ads show failure");
-//                                showBackupInterstitialAd();
-//                            }
-//                        };
-//                        unityInterstitialAd.show(showListener);
-                        break;
-
                     case Constant.APPLOVIN:
                     case Constant.APPLOVIN_MAX:
-                    case Constant.FAN_BIDDING_APPLOVIN_MAX:
                         if (maxInterstitialAd != null && maxInterstitialAd.isReady()) {
                             maxInterstitialAd.showAd();
                         }
@@ -652,12 +550,8 @@ public class InterstitialAd {
                         }
                         break;
 
-                    case Constant.MOPUB:
-                        //Mopub has been acquired by AppLovin
-                        break;
 
                     case Constant.IRONSOURCE:
-                    case Constant.FAN_BIDDING_IRONSOURCE:
                         if (IronSource.isInterstitialReady()) {
                             IronSource.showInterstitial(ironSourceInterstitialId);
                         }

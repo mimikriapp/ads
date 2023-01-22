@@ -15,15 +15,16 @@ public class Constant {
     public static final String APPLOVIN_MAX = "applovin_max";
     public static final String APPLOVIN_DISCOVERY = "applovin_discovery";
     public static final String IRONSOURCE = "ironsource";
+    public static final String PANGLE = "pangle";
     public static final String NONE = "none";
     //mopub ads is deprecated and has been acquired by applovin
-    public static final String MOPUB = "mopub";
+   // public static final String MOPUB = "mopub";
 
     //ad bidding
-    public static final String FAN_BIDDING_ADMOB = "fan_bidding_admob";
-    public static final String FAN_BIDDING_AD_MANAGER = "fan_bidding_ad_manager";
-    public static final String FAN_BIDDING_APPLOVIN_MAX = "fan_bidding_applovin_max";
-    public static final String FAN_BIDDING_IRONSOURCE = "fan_bidding_ironsource";
+    //public static final String FAN_BIDDING_ADMOB = "fan_bidding_admob";
+    //public static final String FAN_BIDDING_AD_MANAGER = "fan_bidding_ad_manager";
+    //public static final String FAN_BIDDING_APPLOVIN_MAX = "fan_bidding_applovin_max";
+    //public static final String FAN_BIDDING_IRONSOURCE = "fan_bidding_ironsource";
 
     //native ad styles
     public static final String STYLE_NEWS = "news";

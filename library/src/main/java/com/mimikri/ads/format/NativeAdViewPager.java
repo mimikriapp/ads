@@ -295,7 +295,6 @@ public class NativeAdViewPager {
 
                     case Constant.APPLOVIN:
                     case Constant.APPLOVIN_MAX:
-                    case Constant.FAN_BIDDING_APPLOVIN_MAX:
                         if (applovinNativeAd.getVisibility() != View.VISIBLE) {
                             nativeAdLoader = new MaxNativeAdLoader(appLovinNativeId, activity);
                             nativeAdLoader.setNativeAdListener(new MaxNativeAdListener() {
@@ -518,7 +517,6 @@ public class NativeAdViewPager {
 
                     case Constant.APPLOVIN:
                     case Constant.APPLOVIN_MAX:
-                    case Constant.FAN_BIDDING_APPLOVIN_MAX:
                         if (applovinNativeAd.getVisibility() != View.VISIBLE) {
                             nativeAdLoader = new MaxNativeAdLoader(appLovinNativeId, activity);
                             nativeAdLoader.setNativeAdListener(new MaxNativeAdListener() {

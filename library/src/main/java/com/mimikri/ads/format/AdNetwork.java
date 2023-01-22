@@ -88,20 +88,6 @@ public class AdNetwork {
                 switch (adNetwork) {
                     case Constant.ADMOB:
                    // case GOOGLE_AD_MANAGER:
-                    case Constant.FAN_BIDDING_ADMOB:
-                    /*case FAN_BIDDING_AD_MANAGER:
-                        MobileAds.initialize(activity, initializationStatus -> {
-                            Map<String, AdapterStatus> statusMap = initializationStatus.getAdapterStatusMap();
-                            for (String adapterClass : statusMap.keySet()) {
-                                AdapterStatus adapterStatus = statusMap.get(adapterClass);
-                                assert adapterStatus != null;
-                                Log.d(TAG, String.format("Adapter name: %s, Description: %s, Latency: %d", adapterClass, adapterStatus.getDescription(), adapterStatus.getLatency()));
-                            }
-                        });
-                        AudienceNetworkInitializeHelper.initializeAd(activity, debug);
-                        break;
-
-                     */
                     case Constant.FAN:
                         AudienceNetworkInitializeHelper.initializeAd(activity, debug);
                         break;
@@ -112,31 +98,8 @@ public class AdNetwork {
                         StartAppSDK.setUserConsent(activity, "pas", System.currentTimeMillis(), true);
                         break;
                     case Constant.UNITY:
-                        if (debug) {
-                            new AlertDialog.Builder(activity)
-                                    .setTitle("Unity Ads Removal")
-                                    .setMessage(Html.fromHtml(activity.getString(R.string.unity_ads_announcement)))
-                                    .setPositiveButton("DISMISS", null)
-                                    .show();
-                        }
-//                        InitializationConfiguration configuration = InitializationConfiguration.builder()
-//                                .setGameId(unityGameId)
-//                                .setInitializationListener(new IInitializationListener() {
-//                                    @Override
-//                                    public void onInitializationComplete() {
-//                                        Log.d(TAG, "Unity Mediation is successfully initialized. with ID : " + unityGameId);
-//                                    }
-//
-//                                    @Override
-//                                    public void onInitializationFailed(SdkInitializationError errorCode, String msg) {
-//                                        Log.d(TAG, "Unity Mediation Failed to Initialize : " + msg);
-//                                    }
-//                                }).build();
-//                        UnityMediation.initialize(configuration);
-                        break;
                     case Constant.APPLOVIN:
                     case Constant.APPLOVIN_MAX:
-                    case Constant.FAN_BIDDING_APPLOVIN_MAX:
                         AppLovinSdk.getInstance(activity).setMediationProvider(AppLovinMediationProvider.MAX);
                         AppLovinSdk.getInstance(activity).initializeSdk(config -> {
                         });
@@ -147,12 +110,7 @@ public class AdNetwork {
                         AppLovinSdk.initializeSdk(activity);
                         break;
 
-                    case Constant.MOPUB:
-                        //Mopub has been acquired by AppLovin
-                        break;
-
                     case Constant.IRONSOURCE:
-                    case Constant.FAN_BIDDING_IRONSOURCE:
                         String advertisingId = IronSource.getAdvertiserId(activity);
                         IronSource.setUserId(advertisingId);
                         IronSource.init(activity, ironSourceAppKey);
@@ -168,19 +126,7 @@ public class AdNetwork {
                     case Constant.ADMOB:
                     //case GOOGLE_AD_MANAGER:
                    // case FAN_BIDDING_ADMOB:
-                  /*  case FAN_BIDDING_AD_MANAGER:
-                        MobileAds.initialize(activity, initializationStatus -> {
-                            Map<String, AdapterStatus> statusMap = initializationStatus.getAdapterStatusMap();
-                            for (String adapterClass : statusMap.keySet()) {
-                                AdapterStatus adapterStatus = statusMap.get(adapterClass);
-                                assert adapterStatus != null;
-                                Log.d(TAG, String.format("Adapter name: %s, Description: %s, Latency: %d", adapterClass, adapterStatus.getDescription(), adapterStatus.getLatency()));
-                            }
-                        });
-                        AudienceNetworkInitializeHelper.initialize(activity);
-                        break;
 
-                   */
                     case Constant.STARTAPP:
                         StartAppSDK.init(activity, startappAppId, false);
                         StartAppSDK.setTestAdsEnabled(debug);
@@ -188,24 +134,8 @@ public class AdNetwork {
                         StartAppSDK.setUserConsent(activity, "pas", System.currentTimeMillis(), true);
                         break;
                     case Constant.UNITY:
-//                        InitializationConfiguration configuration = InitializationConfiguration.builder()
-//                                .setGameId(unityGameId)
-//                                .setInitializationListener(new IInitializationListener() {
-//                                    @Override
-//                                    public void onInitializationComplete() {
-//                                        Log.d(TAG, "Unity Mediation is successfully initialized. with ID : " + unityGameId);
-//                                    }
-//
-//                                    @Override
-//                                    public void onInitializationFailed(SdkInitializationError errorCode, String msg) {
-//                                        Log.d(TAG, "Unity Mediation Failed to Initialize : " + msg);
-//                                    }
-//                                }).build();
-//                        UnityMediation.initialize(configuration);
-                        break;
                     case Constant.APPLOVIN:
                     case Constant.APPLOVIN_MAX:
-                    case Constant.FAN_BIDDING_APPLOVIN_MAX:
                         AppLovinSdk.getInstance(activity).setMediationProvider(AppLovinMediationProvider.MAX);
                         AppLovinSdk.getInstance(activity).initializeSdk(config -> {
                         });
@@ -216,12 +146,7 @@ public class AdNetwork {
                         AppLovinSdk.initializeSdk(activity);
                         break;
 
-                    case Constant.MOPUB:
-                        //Mopub has been acquired by AppLovin
-                        break;
-
                     case Constant.IRONSOURCE:
-                    case Constant.FAN_BIDDING_IRONSOURCE:
                         String advertisingId = IronSource.getAdvertiserId(activity);
                         IronSource.setUserId(advertisingId);
                         IronSource.init(activity, ironSourceAppKey);
