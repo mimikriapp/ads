@@ -473,7 +473,7 @@ public class BannerAd {
                             public void onBannerFailedToLoad(BannerView bannerView, BannerErrorInfo bannerErrorInfo) {
                                 Log.d("SupportTest", "Banner Error" + bannerErrorInfo);
                                 unityAdView.setVisibility(View.GONE);
-                                loadBackupBannerAd();
+                               // loadBackupBannerAd();
                             }
 
                             @Override
