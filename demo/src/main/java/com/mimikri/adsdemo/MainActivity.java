@@ -36,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
         loadNativeAd();
 
         findViewById(R.id.btn_interstitial).setOnClickListener(v -> {
-            startActivity(new Intent(getApplicationContext(), SecondActivity.class));
+           // startActivity(new Intent(getApplicationContext(), SecondActivity.class));
             showInterstitialAd();
-            bannerAd.destroyAndDetachBanner();
+           // bannerAd.destroyAndDetachBanner();
         });
 
     }
@@ -51,7 +51,9 @@ public class MainActivity extends AppCompatActivity {
                 .setStartappAppId(Constant.STARTAPP_APP_ID)
                 .setAppLovinSdkKey(getResources().getString(R.string.applovin_sdk_key))
                 .setIronSourceAppKey(Constant.IRONSOURCE_APP_KEY)
-                .setDebug(BuildConfig.DEBUG)
+                .setUnityGameId(Constant.UNITY_GAME_ID)
+                .setPangleAppId(Constant.PANGLE_AD_APP_ID)
+                .setDebug(true)
                 .build();
     }
 
@@ -64,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
                 .setAppLovinBannerId(Constant.APPLOVIN_BANNER_ID)
                 .setAppLovinBannerZoneId(Constant.APPLOVIN_BANNER_ZONE_ID)
                 .setIronSourceBannerId(Constant.IRONSOURCE_BANNER_ID)
+                .setPangleBannerId(Constant.PANGLE_RIT_BANNER_320X50)
+                .setUnityBannerId(Constant.UNITY_BANNER_ID)
                 .setDarkTheme(false)
                 .build();
     }
@@ -90,6 +94,9 @@ public class MainActivity extends AppCompatActivity {
                 .setAppLovinInterstitialId(Constant.APPLOVIN_INTERSTITIAL_ID)
                 .setAppLovinInterstitialZoneId(Constant.APPLOVIN_INTERSTITIAL_ZONE_ID)
                 .setIronSourceInterstitialId(Constant.IRONSOURCE_INTERSTITIAL_ID)
+                .setPangleInterstitialId(Constant.RIT_INTER_HORIZONTAL)
+                .setUnityInterstitialId(Constant.UNITY_INTERSTITIAL_ID)
+          //      .setPlacementStatus(1)
                 .setInterval(1)
                 .build();
     }

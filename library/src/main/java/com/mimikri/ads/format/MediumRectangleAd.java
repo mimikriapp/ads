@@ -17,6 +17,7 @@ import com.applovin.sdk.AppLovinAd;
 import com.applovin.sdk.AppLovinAdLoadListener;
 import com.applovin.sdk.AppLovinAdSize;
 import com.applovin.sdk.AppLovinSdkUtils;
+
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdSize;
 
@@ -29,6 +30,12 @@ import com.mimikri.ads.R;
 
 import com.startapp.sdk.ads.banner.Banner;
 import com.startapp.sdk.ads.banner.BannerListener;
+import com.unity3d.services.banners.BannerErrorInfo;
+import com.unity3d.services.banners.BannerView;
+import com.unity3d.services.banners.UnityBannerSize;
+
+import static com.mimikri.ads.util.Constant.UNITY_ADS_BANNER_HEIGHT_MEDIUM;
+import static com.mimikri.ads.util.Constant.UNITY_ADS_BANNER_WIDTH_MEDIUM;
 
 public class MediumRectangleAd {
 
@@ -48,7 +55,8 @@ public class MediumRectangleAd {
         private String fanBannerId = "";
         private String appLovinBannerId = "";
         private String appLovinBannerZoneId = "";
-        private String mopubBannerId = "";
+        private String pangleBannerId = "";
+        private String unityBannerId = "";
         private String ironSourceBannerId = "";
         private int placementStatus = 1;
         private boolean darkTheme = false;
@@ -93,9 +101,12 @@ public class MediumRectangleAd {
             this.appLovinBannerZoneId = appLovinBannerZoneId;
             return this;
         }
-
-        public Builder setMopubBannerId(String mopubBannerId) {
-            this.mopubBannerId = mopubBannerId;
+        public Builder setUnityBannerId(String unityBannerId) {
+            this.unityBannerId = unityBannerId;
+            return this;
+        }
+        public Builder setPangleRectangleBannerId(String pangleBannerId) {
+            this.pangleBannerId = pangleBannerId;
             return this;
         }
 
@@ -181,7 +192,57 @@ public class MediumRectangleAd {
                         break;
 
                     case Constant.UNITY:
-                    case Constant.APPLOVIN:
+                        RelativeLayout unityAdView = activity.findViewById(R.id.unity_banner_view_container);
+                        BannerView bottomBanner = new BannerView(activity, unityBannerId, new UnityBannerSize(UNITY_ADS_BANNER_WIDTH_MEDIUM, UNITY_ADS_BANNER_HEIGHT_MEDIUM));
+                        bottomBanner.setListener(new BannerView.IListener() {
+                            @Override
+                            public void onBannerLoaded(BannerView bannerView) {
+                                unityAdView.setVisibility(View.VISIBLE);
+                                Log.d("Unity_banner", "ready");
+                            }
+
+                            @Override
+                            public void onBannerClick(BannerView bannerView) {
+
+                            }
+
+                            @Override
+                            public void onBannerFailedToLoad(BannerView bannerView, BannerErrorInfo bannerErrorInfo) {
+                                Log.d("SupportTest", "Banner Error" + bannerErrorInfo);
+                                unityAdView.setVisibility(View.GONE);
+                                loadBackupBannerAd();
+                            }
+
+                            @Override
+                            public void onBannerLeftApplication(BannerView bannerView) {
+
+                            }
+                        });
+                        unityAdView.addView(bottomBanner);
+                        bottomBanner.load();
+                        Log.d(TAG, adNetwork + " Banner Ad unit Id : " + unityBannerId);
+                        break;
+
+                  /*  case Constant.PANGLE:
+                        PAGBannerSize bannerSize = PAGBannerSize.BANNER_W_300_H_250;
+                        //PAGBannerSize bannerSize = new PAGBannerSize(320,50);
+                        PAGBannerRequest bannerRequest = new PAGBannerRequest(bannerSize);
+                        PAGBannerAd.loadAd(pangleBannerId, bannerRequest, new PAGBannerAdLoadListener() {
+                            @Override
+                            public void onError(int code, String message) {
+                                Log.d("PANGLE_banner", "Error");
+                                loadBackupBannerAd();
+                            }
+
+                            @Override
+                            public void onAdLoaded(PAGBannerAd bannerAd) {
+                                Log.d("PANGLE_banner", "ready");
+
+                            }
+                        });
+                        break;
+
+                   */
                     case Constant.APPLOVIN_MAX:
                         RelativeLayout appLovinAdView = activity.findViewById(R.id.applovin_banner_view_container);
                         MaxAdView maxAdView = new MaxAdView(appLovinBannerId, activity);
@@ -385,37 +446,56 @@ public class MediumRectangleAd {
                         break;
 
                     case Constant.UNITY:
-//                        RelativeLayout unityAdView = activity.findViewById(R.id.unity_banner_view_container);
-//                        BannerView bottomBanner = new BannerView(activity, unityBannerId, new UnityBannerSize(UNITY_ADS_BANNER_WIDTH_MEDIUM, UNITY_ADS_BANNER_HEIGHT_MEDIUM));
-//                        bottomBanner.setListener(new BannerView.IListener() {
-//                            @Override
-//                            public void onBannerLoaded(BannerView bannerView) {
-//                                unityAdView.setVisibility(View.VISIBLE);
-//                                Log.d("Unity_banner", "ready");
-//                            }
-//
-//                            @Override
-//                            public void onBannerClick(BannerView bannerView) {
-//
-//                            }
-//
-//                            @Override
-//                            public void onBannerFailedToLoad(BannerView bannerView, BannerErrorInfo bannerErrorInfo) {
-//                                Log.d("SupportTest", "Banner Error" + bannerErrorInfo);
-//                                unityAdView.setVisibility(View.GONE);
-//                            }
-//
-//                            @Override
-//                            public void onBannerLeftApplication(BannerView bannerView) {
-//
-//                            }
-//                        });
-//                        unityAdView.addView(bottomBanner);
-//                        bottomBanner.load();
-//                        Log.d(TAG, adNetwork + " Banner Ad unit Id : " + unityBannerId);
+                        RelativeLayout unityAdView = activity.findViewById(R.id.unity_banner_view_container);
+                        BannerView bottomBanner = new BannerView(activity, unityBannerId, new UnityBannerSize(UNITY_ADS_BANNER_WIDTH_MEDIUM, UNITY_ADS_BANNER_HEIGHT_MEDIUM));
+                        bottomBanner.setListener(new BannerView.IListener() {
+                            @Override
+                            public void onBannerLoaded(BannerView bannerView) {
+                                unityAdView.setVisibility(View.VISIBLE);
+                                Log.d("Unity_banner", "ready");
+                            }
+
+                            @Override
+                            public void onBannerClick(BannerView bannerView) {
+
+                            }
+
+                            @Override
+                            public void onBannerFailedToLoad(BannerView bannerView, BannerErrorInfo bannerErrorInfo) {
+                                Log.d("SupportTest", "Banner Error" + bannerErrorInfo);
+                                unityAdView.setVisibility(View.GONE);
+                            }
+
+                            @Override
+                            public void onBannerLeftApplication(BannerView bannerView) {
+
+                            }
+                        });
+                        unityAdView.addView(bottomBanner);
+                        bottomBanner.load();
+                        Log.d(TAG, adNetwork + " Banner Ad unit Id : " + unityBannerId);
                         break;
 
-                    case Constant.APPLOVIN:
+                  /*  case Constant.PANGLE:
+                        PAGBannerSize bannerSize = PAGBannerSize.BANNER_W_300_H_250;
+                        //PAGBannerSize bannerSize = new PAGBannerSize(320,50);
+                        PAGBannerRequest bannerRequest = new PAGBannerRequest(bannerSize);
+                        PAGBannerAd.loadAd(pangleBannerId, bannerRequest, new PAGBannerAdLoadListener() {
+                            @Override
+                            public void onError(int code, String message) {
+                                Log.d("PANGLE_banner", "Error");
+
+                            }
+
+                            @Override
+                            public void onAdLoaded(PAGBannerAd bannerAd) {
+                                Log.d("PANGLE_banner", "ready");
+
+                            }
+                        });
+                        break;
+
+                   */
                     case Constant.APPLOVIN_MAX:
                         RelativeLayout appLovinAdView = activity.findViewById(R.id.applovin_banner_view_container);
                         MaxAdView maxAdView = new MaxAdView(appLovinBannerId, activity);

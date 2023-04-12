@@ -24,7 +24,7 @@ public class ActivitySplash extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        initAds();
+        //initAds();
 
         if (Constant.AD_NETWORK.equals(ADMOB)) {
             application = getApplication();
@@ -40,7 +40,6 @@ public class ActivitySplash extends AppCompatActivity {
                 .setAdStatus(Constant.AD_STATUS)
                 .setAdNetwork(Constant.AD_NETWORK)
                 .setBackupAdNetwork(Constant.BACKUP_AD_NETWORK)
-                .setAdMobAppId(null)
                 .setStartappAppId(Constant.STARTAPP_APP_ID)
                 .setUnityGameId(Constant.UNITY_GAME_ID)
                 .setAppLovinSdkKey(getResources().getString(R.string.applovin_sdk_key))

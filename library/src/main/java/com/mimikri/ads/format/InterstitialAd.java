@@ -18,6 +18,7 @@ import com.applovin.sdk.AppLovinAd;
 import com.applovin.sdk.AppLovinAdLoadListener;
 import com.applovin.sdk.AppLovinAdSize;
 import com.applovin.sdk.AppLovinSdk;
+
 import com.facebook.ads.InterstitialAdListener;
 import com.ironsource.mediationsdk.IronSource;
 import com.ironsource.mediationsdk.logger.IronSourceError;
@@ -27,8 +28,15 @@ import com.mimikri.ads.util.Constant;
 import com.startapp.sdk.adsbase.Ad;
 import com.startapp.sdk.adsbase.StartAppAd;
 import com.startapp.sdk.adsbase.adlisteners.AdEventListener;
+import com.unity3d.mediation.IInterstitialAdLoadListener;
+import com.unity3d.mediation.IInterstitialAdShowListener;
+import com.unity3d.mediation.errors.LoadError;
+import com.unity3d.mediation.errors.ShowError;
 
 import java.util.concurrent.TimeUnit;
+
+import static com.mimikri.ads.util.Constant.PANGLE;
+import static com.mimikri.ads.util.Constant.UNITY;
 
 public class InterstitialAd {
 
@@ -39,8 +47,10 @@ public class InterstitialAd {
 
         private com.facebook.ads.InterstitialAd fanInterstitialAd;
         private StartAppAd startAppAd;
-        //        private com.unity3d.mediation.InterstitialAd unityInterstitialAd;
+        private com.unity3d.mediation.InterstitialAd unityInterstitialAd;
         private MaxInterstitialAd maxInterstitialAd;
+        //private PAGInterstitialAd interstitialAd;
+
         public AppLovinInterstitialAdDialog appLovinInterstitialAdDialog;
         public AppLovinAd appLovinAd;
         private int retryAttempt;
@@ -52,7 +62,8 @@ public class InterstitialAd {
         private String fanInterstitialId = "";
         private String appLovinInterstitialId = "";
         private String appLovinInterstitialZoneId = "";
-        private String mopubInterstitialId = "";
+        private String unityInterstitialId = "";
+        private String pangleInterstitialId = "";
         private String ironSourceInterstitialId = "";
         private int placementStatus = 1;
         private int interval = 3;
@@ -104,9 +115,12 @@ public class InterstitialAd {
             this.appLovinInterstitialZoneId = appLovinInterstitialZoneId;
             return this;
         }
-
-        public Builder setMopubInterstitialId(String mopubInterstitialId) {
-            this.mopubInterstitialId = mopubInterstitialId;
+        public Builder setUnityInterstitialId(String unityInterstitialId) {
+            this.unityInterstitialId = unityInterstitialId;
+            return this;
+        }
+        public Builder setPangleInterstitialId(String pangleInterstitialId) {
+            this.pangleInterstitialId = pangleInterstitialId;
             return this;
         }
 
@@ -131,7 +145,9 @@ public class InterstitialAd {
         }
 
         public void loadInterstitialAd() {
+            Log.d(TAG, "loadInterstitialAd");
             if (adStatus.equals(Constant.AD_STATUS_ON) && placementStatus != 0) {
+                Log.d(TAG, "loadInterstitialAd OK");
                 switch (adNetwork) {
                     case Constant.FAN:
                         fanInterstitialAd = new com.facebook.ads.InterstitialAd(activity, fanInterstitialId);
@@ -187,8 +203,67 @@ public class InterstitialAd {
                         });
                         break;
 
-                    case Constant.UNITY:
-                    case Constant.APPLOVIN:
+                    case UNITY:
+                        unityInterstitialAd = new com.unity3d.mediation.InterstitialAd(activity, unityInterstitialId);
+                        final IInterstitialAdLoadListener unityAdLoadListener = new IInterstitialAdLoadListener() {
+                            @Override
+                            public void onInterstitialLoaded(com.unity3d.mediation.InterstitialAd interstitialAd) {
+                                Log.d(TAG, "unity interstitial ad loaded");
+                            }
+
+                            @Override
+                            public void onInterstitialFailedLoad(com.unity3d.mediation.InterstitialAd interstitialAd, LoadError loadError, String s) {
+                                Log.e(TAG, "Unity Ads failed to load ad : " + unityInterstitialId + " : error : " + s);
+                                loadBackupInterstitialAd();
+                            }
+
+                        };
+                        unityInterstitialAd.load(unityAdLoadListener);
+                        break;
+                   /* case PANGLE:
+                        Log.d(TAG, "PANGLE interstitial ad choosed");
+                      PAGInterstitialRequest request = new PAGInterstitialRequest();
+                        PAGInterstitialAd.loadAd(pangleInterstitialId,
+                                request,
+                                new PAGInterstitialAdLoadListener() {
+                                    @Override
+                                    public void onError(int code, String message) {
+                                        Log.d(TAG, "PANGLE interstitial ad error "+ code + " " + message);
+                                        loadBackupInterstitialAd();
+                                    }
+
+                                    @Override
+                                    public void onAdLoaded(PAGInterstitialAd interstitialAd) {
+                                        Log.d(TAG, "PANGLE interstitial ad loaded");
+                                    }
+                                });
+
+
+
+                        PAGInterstitialAd.loadAd(pangleInterstitialId,
+                                new PAGInterstitialRequest(),
+                                new PAGInterstitialAdLoadListener() {
+                                    @Override
+                                    public void onError(int code, String message) {
+                                        Log.d(TAG, "PANGLE interstitial ad error" + code + "msg"+message);
+                                        loadBackupInterstitialAd();
+                                    }
+
+                                    @Override
+                                    public void onAdLoaded(PAGInterstitialAd pagInterstitialAd) {
+                                        interstitialAd = pagInterstitialAd;
+                                        Log.d(TAG, "Pangle Interstitial Ad loaded...");
+                                    }
+                                });
+
+
+
+
+
+                        break;
+
+
+                    */
                     case Constant.APPLOVIN_MAX:
                         maxInterstitialAd = new MaxInterstitialAd(appLovinInterstitialId, activity);
                         maxInterstitialAd.setListener(new MaxAdListener() {
@@ -353,8 +428,41 @@ public class InterstitialAd {
                         Log.d(TAG, "load StartApp as backup Ad");
                         break;
 
-                    case Constant.UNITY:
-                    case Constant.APPLOVIN:
+                    case UNITY:
+                        unityInterstitialAd = new com.unity3d.mediation.InterstitialAd(activity, unityInterstitialId);
+                        final IInterstitialAdLoadListener unityAdLoadListener = new IInterstitialAdLoadListener() {
+                            @Override
+                            public void onInterstitialLoaded(com.unity3d.mediation.InterstitialAd interstitialAd) {
+                                Log.d(TAG, "unity interstitial ad loaded");
+                            }
+
+                            @Override
+                            public void onInterstitialFailedLoad(com.unity3d.mediation.InterstitialAd interstitialAd, LoadError loadError, String s) {
+                                Log.e(TAG, "Unity Ads failed to load ad : " + unityInterstitialId + " : error : " + s);
+                                loadBackupInterstitialAd();
+                            }
+
+                        };
+                        unityInterstitialAd.load(unityAdLoadListener);
+                        break;
+                  /*  case PANGLE:
+                        PAGInterstitialRequest request = new PAGInterstitialRequest();
+                        PAGInterstitialAd.loadAd(pangleInterstitialId,
+                                request,
+                                new PAGInterstitialAdLoadListener() {
+                                    @Override
+                                    public void onError(int code, String message) {
+                                        Log.d(TAG, "PANGLE interstitial ad error" + code + "msg"+message);
+                                    }
+
+                                    @Override
+                                    public void onAdLoaded(PAGInterstitialAd interstitialAd) {
+                                        Log.d(TAG, "PANGLE interstitial ad loaded");
+                                    }
+                                });
+                        break;
+
+                   */
                     case Constant.APPLOVIN_MAX:
                         maxInterstitialAd = new MaxInterstitialAd(appLovinInterstitialId, activity);
                         maxInterstitialAd.setListener(new MaxAdListener() {
@@ -462,6 +570,7 @@ public class InterstitialAd {
         }
 
         public void showInterstitialAd() {
+            Log.d(TAG, "showInterstitialAd");
             if (adStatus.equals(Constant.AD_STATUS_ON) && placementStatus != 0) {
                 if (counter == interval) {
                     switch (adNetwork) {
@@ -485,8 +594,60 @@ public class InterstitialAd {
                             }
                             break;
 
-                        case Constant.UNITY:
-                        case Constant.APPLOVIN:
+
+                        case UNITY:
+                            final IInterstitialAdShowListener showListener = new IInterstitialAdShowListener() {
+                                @Override
+                                public void onInterstitialShowed(com.unity3d.mediation.InterstitialAd interstitialAd) {
+
+                                }
+
+                                @Override
+                                public void onInterstitialClicked(com.unity3d.mediation.InterstitialAd interstitialAd) {
+
+                                }
+
+                                @Override
+                                public void onInterstitialClosed(com.unity3d.mediation.InterstitialAd interstitialAd) {
+
+                                }
+
+                                @Override
+                                public void onInterstitialFailedShow(com.unity3d.mediation.InterstitialAd interstitialAd, ShowError showError, String s) {
+                                    Log.d(TAG, "unity ads show failure");
+                                    showBackupInterstitialAd();
+                                }
+                            };
+                            unityInterstitialAd.show(showListener);
+                            break;
+                 /*       case PANGLE:
+                            /*PAGInterstitialRequest request = new PAGInterstitialRequest();
+                            PAGInterstitialAd.loadAd(pangleInterstitialId,
+                                    request,
+                                    new PAGInterstitialAdLoadListener() {
+                                        @Override
+                                        public void onError(int code, String message) {
+                                            Log.d(TAG, "PANGLE interstitial ad error");
+
+                                        }
+
+                                        @Override
+                                        public void onAdLoaded(PAGInterstitialAd interstitialAd) {
+                                            Log.d(TAG, "PANGLE interstitial ad loaded");
+                                        }
+                                    });
+
+
+                          //  interstitialAd.show(activity);
+                            if (interstitialAd != null) {
+                                interstitialAd.show(activity);
+                            }
+                            //else {loadInterstitialAd();}
+
+                            break;
+
+                  */
+
                         case Constant.APPLOVIN_MAX:
                             if (maxInterstitialAd != null && maxInterstitialAd.isReady()) {
                                 Log.d(TAG, "ready : " + counter);
@@ -535,9 +696,38 @@ public class InterstitialAd {
                         }
                         break;
 
-                    case Constant.UNITY:
-//
-                    case Constant.APPLOVIN:
+                    case UNITY:
+                        final IInterstitialAdShowListener showListener = new IInterstitialAdShowListener() {
+                            @Override
+                            public void onInterstitialShowed(com.unity3d.mediation.InterstitialAd interstitialAd) {
+
+                            }
+
+                            @Override
+                            public void onInterstitialClicked(com.unity3d.mediation.InterstitialAd interstitialAd) {
+
+                            }
+
+                            @Override
+                            public void onInterstitialClosed(com.unity3d.mediation.InterstitialAd interstitialAd) {
+
+                            }
+
+                            @Override
+                            public void onInterstitialFailedShow(com.unity3d.mediation.InterstitialAd interstitialAd, ShowError showError, String s) {
+                                Log.d(TAG, "unity ads show failure");
+                            }
+                        };
+                        unityInterstitialAd.show(showListener);
+                        break;
+                  /*  case PANGLE:
+
+                        if (interstitialAd != null) {
+                            interstitialAd.show(activity);
+                        }
+                        break;
+
+                   */
                     case Constant.APPLOVIN_MAX:
                         if (maxInterstitialAd != null && maxInterstitialAd.isReady()) {
                             maxInterstitialAd.showAd();

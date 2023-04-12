@@ -18,7 +18,7 @@ public class Constant {
     public static final String PANGLE = "pangle";
     public static final String NONE = "none";
     //mopub ads is deprecated and has been acquired by applovin
-   // public static final String MOPUB = "mopub";
+    // public static final String MOPUB = "mopub";
 
     //ad bidding
     //public static final String FAN_BIDDING_ADMOB = "fan_bidding_admob";
@@ -44,5 +44,4 @@ public class Constant {
     public static final int UNITY_ADS_BANNER_HEIGHT_MEDIUM = 50;
     public static final int UNITY_ADS_BANNER_WIDTH_LARGE = 728;
     public static final int UNITY_ADS_BANNER_HEIGHT_LARGE = 90;
-
 }

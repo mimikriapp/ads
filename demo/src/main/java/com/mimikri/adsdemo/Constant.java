@@ -6,15 +6,6 @@ public class Constant {
     public static final String AD_NETWORK = "unity";
     public static final String BACKUP_AD_NETWORK = "none";
 
-    public static final String ADMOB_BANNER_ID = "ca-app-pub-3940256099942544/6300978111";
-    public static final String ADMOB_INTERSTITIAL_ID = "ca-app-pub-3940256099942544/1033173712";
-    public static final String ADMOB_NATIVE_ID = "ca-app-pub-3940256099942544/2247696110";
-    public static final String ADMOB_APP_OPEN_AD_ID = "ca-app-pub-3940256099942544/3419835294";
-
-    public static final String GOOGLE_AD_MANAGER_BANNER_ID = "/6499/example/banner";
-    public static final String GOOGLE_AD_MANAGER_INTERSTITIAL_ID = "/6499/example/interstitial";
-    public static final String GOOGLE_AD_MANAGER_NATIVE_ID = "/6499/example/native";
-    public static final String GOOGLE_AD_MANAGER_APP_OPEN_AD_ID = "/6499/example/app-open";
 
     public static final String FAN_BANNER_ID = "IMG_16_9_APP_INSTALL#782095786538726_782096253205346";
     public static final String FAN_INTERSTITIAL_ID = "IMG_16_9_APP_INSTALL#782095786538726_782096399871998";
@@ -25,6 +16,27 @@ public class Constant {
     public static final String UNITY_GAME_ID = "4089993";
     public static final String UNITY_BANNER_ID = "banner";
     public static final String UNITY_INTERSTITIAL_ID = "video";
+
+    public static final String PANGLE_AD_APP_ID = "8106444";
+
+    // Interstitial Ad
+    public static final String RIT_INTER_VERTICAL = "980088188";
+    public static final String RIT_INTER_HORIZONTAL= "980454861";
+
+    // Rewarded Ad
+    public static final String RIT_REWARDED_VERTICAL = "980088192";
+    public static final String RIT_REWARDED_HORIZONTAL= "980099801";
+
+    // Banner Ad
+    public static final String RIT_BANNER_300X250 = "980088196";
+    public static final String PANGLE_RIT_BANNER_320X50 = "980454839";
+
+    // App Open
+    public static final String RIT_OPEN_VERTICAL = "890000078";
+    public static final String RIT_OPEN_HORIZONTAL= "890000079";
+
+    // Native
+    public static final String RIT_NATIVE = "980088216";
 
     public static final String APPLOVIN_BANNER_ID = "da17eff31ae69f15";
     public static final String APPLOVIN_INTERSTITIAL_ID = "98f6a586ed642919";

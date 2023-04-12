@@ -5,7 +5,7 @@ plugins {
 android {
     compileSdk 33
     defaultConfig {
-        applicationId "com.mimikri.adsdemo"
+        applicationId "com.tvindonesia.lengkap.online"
         minSdk 21
         targetSdk 33
         versionCode 6
